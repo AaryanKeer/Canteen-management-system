@@ -1,0 +1,42 @@
+.kitchen-dashboard {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Header */
+.kitchen-header {
+  padding: 20px;
+}
+
+.kitchen-header h2 {
+  margin: 0;
+}
+
+.kitchen-header p {
+  color: gray;
+}
+
+/* Cards */
+.kitchen-actions {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.kitchen-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.kitchen-card:hover {
+  background-color: #e9ecef;
+}
+
+/* Orders Section */
+.kitchen-orders-section {
+  padding: 20px;
+}

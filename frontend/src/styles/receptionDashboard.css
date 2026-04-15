@@ -1,0 +1,42 @@
+.reception-dashboard {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Header */
+.reception-header {
+  padding: 20px;
+}
+
+.reception-header h2 {
+  margin: 0;
+}
+
+.reception-header p {
+  color: gray;
+}
+
+/* Cards */
+.reception-actions {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.reception-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.reception-card:hover {
+  background-color: #e9ecef;
+}
+
+/* Orders Section */
+.reception-orders-section {
+  padding: 20px;
+}

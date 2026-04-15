@@ -1,0 +1,117 @@
+.inventory-container {
+  padding: 20px;
+}
+
+/* FORM */
+.inventory-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.inventory-form input {
+  padding: 8px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.inventory-form button {
+  padding: 8px 15px;
+  cursor: pointer;
+  background-color: #2f3e46;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #344e41;
+  color: white;
+}
+
+/* BUTTONS */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Specific buttons */
+.btn.minus {
+  background-color: #e63946;
+}
+
+.btn.plus {
+  background-color: #2a9d8f;
+}
+
+.btn.delete {
+  background-color: #d00000;
+}
+
+/* Hover effects */
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* 🔥 Responsive */
+@media (max-width: 768px) {
+  .inventory-form {
+    flex-direction: column;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  td {
+    border: none;
+    text-align: left;
+    padding: 5px 0;
+  }
+
+  td::before {
+    font-weight: bold;
+    display: block;
+  }
+
+  td:nth-child(1)::before { content: "Item"; }
+  td:nth-child(2)::before { content: "Quantity"; }
+  td:nth-child(3)::before { content: "Unit"; }
+  td:nth-child(4)::before { content: "Threshold"; }
+  td:nth-child(5)::before { content: "Actions"; }
+}

@@ -1,15 +1,134 @@
+/* ================= CONTAINER ================= */
+
 .kitchen-container {
-  padding: 20px;
+  padding: 10px;
+
+  /* 🔥 GRID SYSTEM */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
+
+/* Tablet → 2 columns */
+@media (min-width: 768px) {
+  .kitchen-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop → 3 columns */
+@media (min-width: 1200px) {
+  .kitchen-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ================= ORDER CARD ================= */
 
 .order-card {
-  background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: 0.2s;
 }
 
-.buttons button {
-  margin-right: 10px;
-  padding: 5px 10px;
+.order-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ================= HEADER ================= */
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================= ITEMS ================= */
+
+.order-items {
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* 🔥 TOUCH FRIENDLY BUTTONS */
+.btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Colors */
+.primary {
+  background: var(--pending);
+  color: white;
+}
+
+.blue {
+  background: var(--preparing);
+  color: white;
+}
+
+.green {
+  background: var(--ready);
+  color: white;
+}
+
+/* ================= STATUS BADGE ================= */
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.preparing {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status.ready {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .order-items {
+    font-size: 14px;
+  }
 }

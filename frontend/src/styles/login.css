@@ -1,48 +1,109 @@
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f4f6f9;
+  background: var(--bg);
+  padding: 20px;
 }
 
+/* CARD */
 .login-card {
-  background: white;
-  padding: 40px;
-  width: 350px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
-}
+  background: var(--card);
 
-.logo {
-  height: 60px;
-  background: #ddd;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-input {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  max-width: 480px;   /* 🔥 bigger */
+
+  padding: 40px;
+  text-align: center;
+
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
+/* LOGO */
+.logo {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.login-card h2 {
+  margin: 5px 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* INPUT */
+.login-card input {
+  width: 100%;
+  padding: 16px;
+  margin-top: 12px;
+
+  border-radius: 10px;
+  border: 1px solid var(--border);
+
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.login-card input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.1);
+}
+
+/* BUTTON */
 .login-btn {
   width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background-color: #2f3e46;
+  padding: 14px;
+  margin-top: 18px;
+
+  background: var(--primary);
   color: white;
-  border: none;
-  border-radius: 5px;
+
+  border-radius: 10px;
+  font-size: 16px;
+
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .login-btn:hover {
-  background-color: #354f52;
+  background: #1d4ed8;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px;
+  }
+
+  .logo {
+    font-size: 34px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login-card {
+    max-width: 520px;  /* 🔥 laptop optimized */
+    padding: 50px;
+  }
 }

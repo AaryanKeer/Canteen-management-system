@@ -18,11 +18,10 @@ function Inventory() {
   async function loadInventory() {
     const res = await fetch("http://localhost:5000/api/inventory");
     const data = await res.json();
-    setItems(data);
+    setItems(data || []);
   }
 
   async function addItem() {
-    // ✅ Validation
     if (!form.item_name || !form.quantity || !form.unit || !form.threshold) {
       alert("Please fill all fields");
       return;
@@ -51,13 +50,11 @@ function Inventory() {
   }
 
   async function updateItem(id, newQty) {
-    if (newQty < 0) return; // ✅ prevent negative
+    if (newQty < 0) return;
 
     await fetch(`http://localhost:5000/api/inventory/${id}`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ quantity: newQty }),
     });
 
@@ -65,10 +62,7 @@ function Inventory() {
   }
 
   async function deleteItem(id) {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this item?"
-    );
-    if (!confirmDelete) return;
+    if (!window.confirm("Delete this item?")) return;
 
     await fetch(`http://localhost:5000/api/inventory/${id}`, {
       method: "DELETE",
@@ -79,9 +73,9 @@ function Inventory() {
 
   return (
     <div className="inventory-container">
-      <h2>Inventory Management</h2>
+      <h2>📦 Inventory</h2>
 
-      {/* Add Item */}
+      {/* FORM */}
       <div className="inventory-form">
         <input
           placeholder="Item Name"
@@ -118,60 +112,69 @@ function Inventory() {
         />
 
         <button className="add-btn" onClick={addItem}>
-          Add
+          + Add
         </button>
       </div>
 
-      {/* Inventory Table */}
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Unit</th>
-            <th>Threshold</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+      {/* TABLE */}
+      <div className="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {items.map((item) => {
-            const qty = Number(item.quantity);
+          <tbody>
+            {items.map((item) => {
+              const qty = Number(item.quantity);
+              const isLow = qty <= item.threshold;
 
-            return (
-              <tr key={item.id}>
-                <td>{item.item_name}</td>
-                <td>{qty}</td>
-                <td>{item.unit}</td>
-                <td>{item.threshold}</td>
+              return (
+                <tr key={item.id} className={isLow ? "low-stock" : ""}>
+                  <td className="item-name">{item.item_name}</td>
 
-                <td className="action-buttons">
-                  <button
-                    className="btn minus"
-                    onClick={() => updateItem(item.id, qty - 1)}
-                  >
-                    -1
-                  </button>
+                  <td>{qty}</td>
+                  <td>{item.unit}</td>
 
-                  <button
-                    className="btn plus"
-                    onClick={() => updateItem(item.id, qty + 1)}
-                  >
-                    +1
-                  </button>
+                  <td>
+                    <span className={`status-badge ${isLow ? "low" : "ok"}`}>
+                      {isLow ? "Low" : "OK"}
+                    </span>
+                  </td>
 
-                  <button
-                    className="btn delete"
-                    onClick={() => deleteItem(item.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                  <td className="action-buttons">
+                    <button
+                      className="btn minus"
+                      onClick={() => updateItem(item.id, qty - 1)}
+                    >
+                      -1
+                    </button>
+
+                    <button
+                      className="btn plus"
+                      onClick={() => updateItem(item.id, qty + 1)}
+                    >
+                      +1
+                    </button>
+
+                    <button
+                      className="btn delete"
+                      onClick={() => deleteItem(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

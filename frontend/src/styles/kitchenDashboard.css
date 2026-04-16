@@ -1,11 +1,15 @@
 .kitchen-dashboard {
-  background-color: #f4f6f9;
+  background: var(--bg);
   min-height: 100vh;
+}
+
+.kitchen-content {
+  padding: 20px;
 }
 
 /* Header */
 .kitchen-header {
-  padding: 20px;
+  margin-bottom: 15px;
 }
 
 .kitchen-header h2 {
@@ -13,30 +17,50 @@
 }
 
 .kitchen-header p {
-  color: gray;
+  color: #6b7280;
 }
 
-/* Cards */
+/* Actions */
 .kitchen-actions {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .kitchen-card {
-  background: white;
+  background: var(--card);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  transition: 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .kitchen-card:hover {
-  background-color: #e9ecef;
+  transform: translateY(-3px);
+  background: #f9fafb;
 }
 
-/* Orders Section */
+/* Orders */
 .kitchen-orders-section {
-  padding: 20px;
+  margin-top: 10px;
+}
+
+/* Responsive */
+
+/* Tablet improvement */
+@media (min-width: 768px) {
+  .kitchen-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .kitchen-content {
+    padding: 10px;
+  }
 }

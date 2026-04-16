@@ -1,0 +1,30 @@
+.chart-card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.chart-card h3 {
+  margin-bottom: 10px;
+}
+
+/* Container */
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    height: 200px;
+  }
+}

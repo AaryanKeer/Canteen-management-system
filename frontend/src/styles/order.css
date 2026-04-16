@@ -1,23 +1,36 @@
-.order-container {
-  display: flex;
-  padding: 20px;
+.pos-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
 }
 
-.menu-section {
-  width: 70%;
+/* SEARCH */
+.search {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
 }
 
+/* MENU */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
 }
 
 .menu-card {
-  background: white;
-  padding: 10px;
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
   cursor: pointer;
-  border-radius: 10px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.menu-card:hover {
+  transform: scale(1.05);
 }
 
 .menu-card.disabled {
@@ -25,17 +38,29 @@
   pointer-events: none;
 }
 
+/* IMAGE */
 .image img {
   width: 100%;
-  height: 100px;
+  height: 90px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
+.no-img {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* CART */
 .cart-section {
-  width: 30%;
-  background: white;
-  padding: 20px;
-  margin-left: 20px;
+  background: var(--card);
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cart-item {
@@ -44,10 +69,60 @@
   margin-bottom: 10px;
 }
 
+.item-name {
+  font-weight: 600;
+}
+
+.qty {
+  font-size: 12px;
+  color: gray;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* TOTAL */
+.total {
+  font-weight: bold;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* BUTTON */
 .place-order {
-  width: 100%;
-  padding: 10px;
-  background: green;
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--primary);
   color: white;
-  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+/* EMPTY */
+.empty {
+  text-align: center;
+  color: gray;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .pos-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .place-order {
+    font-size: 14px;
+  }
 }

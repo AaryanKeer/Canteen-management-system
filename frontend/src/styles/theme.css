@@ -1,0 +1,38 @@
+:root {
+  --primary: #2F80ED;
+  --secondary: #27AE60;
+  --bg: #F4F7FB;
+  --card: #FFFFFF;
+  --text: #1F2937;
+  --border: #E5E7EB;
+
+  --pending: #F59E0B;
+  --preparing: #3B82F6;
+  --ready: #10B981;
+  --completed: #6B7280;
+}
+
+/* Global reset */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Common card */
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Buttons */
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 500;
+}

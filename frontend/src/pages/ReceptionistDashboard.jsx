@@ -9,37 +9,37 @@ function ReceptionistDashboard() {
 
   return (
     <div className="reception-dashboard">
-      
       <Navbar />
 
-      {/* Header */}
-      <div className="reception-header">
-        <h2>Receptionist Dashboard</h2>
-        <p>Create and manage customer orders</p>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="reception-actions">
-        <div
-          className="reception-card"
-          onClick={() => navigate("/new-order")}
-        >
-          Create New Order
+      <div className="reception-content">
+        {/* Header */}
+        <div className="reception-header">
+          <h2>💳 Reception POS</h2>
+          <p>Create and manage customer orders</p>
         </div>
 
-        <div
-          className="reception-card"
-          onClick={() => navigate("/kitchen-orders")}
-        >
-          View Orders
+        {/* Quick Actions */}
+        <div className="reception-actions">
+          <div
+            className="reception-card"
+            onClick={() => navigate("/new-order")}
+          >
+            📝 New Order
+          </div>
+
+          <div
+            className="reception-card"
+            onClick={() => navigate("/kitchen-orders")}
+          >
+            📋 Orders
+          </div>
+        </div>
+
+        {/* POS Layout */}
+        <div className="reception-orders-section">
+          <NewOrder />
         </div>
       </div>
-
-      {/* Order Section */}
-      <div className="reception-orders-section">
-        <NewOrder />
-      </div>
-
     </div>
   );
 }

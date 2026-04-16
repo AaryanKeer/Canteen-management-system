@@ -1,11 +1,15 @@
 .reception-dashboard {
-  background-color: #f4f6f9;
+  background: var(--bg);
   min-height: 100vh;
+}
+
+.reception-content {
+  padding: 20px;
 }
 
 /* Header */
 .reception-header {
-  padding: 20px;
+  margin-bottom: 15px;
 }
 
 .reception-header h2 {
@@ -13,30 +17,43 @@
 }
 
 .reception-header p {
-  color: gray;
+  color: #6b7280;
 }
 
-/* Cards */
+/* Actions */
 .reception-actions {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
 .reception-card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  transition: 0.2s;
 }
 
 .reception-card:hover {
-  background-color: #e9ecef;
+  transform: translateY(-2px);
 }
 
 /* Orders Section */
 .reception-orders-section {
-  padding: 20px;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .reception-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .reception-content {
+    padding: 10px;
+  }
 }

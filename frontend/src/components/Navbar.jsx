@@ -1,33 +1,39 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
 
-  const role = localStorage.getItem("role"); // ✅ get role
+  const role = localStorage.getItem("role");
+  const name = localStorage.getItem("name");
 
   function handleLogout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.clear();
     navigate("/");
   }
 
   return (
     <div className="navbar">
-      <div className="logo">[Logo]</div>
-
-      <div className="system-name">
-        Hospital Canteen Management System
+      {/* Left */}
+      <div className="nav-left">
+        <div className="logo">🍽️</div>
+        <div className="system-name">
+          Hospital Canteen
+        </div>
       </div>
 
-      <div className="user-info">
-        Welcome, {role} |{" "}
-        <span
-          onClick={handleLogout}
-          style={{ cursor: "pointer", color: "yellow" }}
-        >
-          Logout
+      {/* Right */}
+      <div className="nav-right">
+        <span className="role-badge">{role}</span>
+
+        <span className="user-name">
+          {name || "User"}
         </span>
+
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
   );

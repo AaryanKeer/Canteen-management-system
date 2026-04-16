@@ -7,11 +7,10 @@ function NewOrder() {
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState([]);
 
-  // Load menu
   useEffect(() => {
     async function fetchMenu() {
       const data = await getMenu();
-      setMenu(data);
+      setMenu(data || []);
     }
     fetchMenu();
   }, []);
@@ -40,7 +39,6 @@ function NewOrder() {
     }, 0);
   }
 
-  // ✅ FINAL FIXED PLACE ORDER FUNCTION
   async function handlePlaceOrder() {
     if (cart.length === 0) {
       alert("Cart is empty");
@@ -48,13 +46,7 @@ function NewOrder() {
     }
 
     try {
-      // ✅ MUST have valid user_id
-      const user_id = 4; // receptionist id
-
-      if (!user_id) {
-        alert("User not logged in properly. Please login again.");
-        return;
-      }
+      const user_id = 4;
 
       const orderData = {
         user_id,
@@ -62,21 +54,17 @@ function NewOrder() {
         cart,
       };
 
-      console.log("Sending order:", orderData);
-
       const res = await createOrder(orderData);
 
       if (res && res.order) {
         alert("Order Placed: " + res.order.orderNo);
         setCart([]);
       } else {
-        console.error("Order failed:", res);
-        alert("Order failed. Check console.");
+        alert("Order failed");
       }
-
     } catch (err) {
-      console.error("Server error:", err);
-      alert("Server error while placing order");
+      console.error(err);
+      alert("Server error");
     }
   }
 
@@ -85,12 +73,13 @@ function NewOrder() {
   );
 
   return (
-    <div className="order-container">
-      
-      {/* Left Side */}
+    <div className="pos-container">
+
+      {/* LEFT → MENU */}
       <div className="menu-section">
         <input
-          placeholder="Search food..."
+          className="search"
+          placeholder="🔍 Search food..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -106,34 +95,44 @@ function NewOrder() {
                 {item.image_url ? (
                   <img src={item.image_url} alt="" />
                 ) : (
-                  "No Image"
+                  <div className="no-img">🍽️</div>
                 )}
               </div>
 
               <h4>{item.item_name}</h4>
               <p>₹{item.price}</p>
-              <p>{item.type}</p>
 
-              {!item.available && <span>Out of Stock</span>}
+              {!item.available && <span className="out">Out of Stock</span>}
             </div>
           ))}
         </div>
       </div>
 
-      {/* Right Side */}
+      {/* RIGHT → CART */}
       <div className="cart-section">
-        <h3>Order Summary</h3>
+        <h3>🧾 Order Summary</h3>
 
-        {cart.map((item) => (
-          <div key={item.id} className="cart-item">
-            <span>{item.item_name}</span>
-            <span>x{item.qty}</span>
-            <span>₹{item.price * item.qty}</span>
-            <button onClick={() => removeFromCart(item.id)}>X</button>
-          </div>
-        ))}
+        {cart.length === 0 ? (
+          <p className="empty">No items added</p>
+        ) : (
+          cart.map((item) => (
+            <div key={item.id} className="cart-item">
+              <div>
+                <p className="item-name">{item.item_name}</p>
+                <p className="qty">x{item.qty}</p>
+              </div>
 
-        <h3>Total: ₹{getTotal()}</h3>
+              <div className="right">
+                <span>₹{item.price * item.qty}</span>
+                <button onClick={() => removeFromCart(item.id)}>❌</button>
+              </div>
+            </div>
+          ))
+        )}
+
+        <div className="total">
+          Total: ₹{getTotal()}
+        </div>
 
         <button className="place-order" onClick={handlePlaceOrder}>
           Place Order

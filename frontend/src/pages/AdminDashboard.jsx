@@ -28,19 +28,23 @@ function AdminDashboard() {
     <div className="dashboard-container">
       <Navbar />
 
-      <div className="welcome-section">
-        <h2>Welcome to Hospital Canteen Management System</h2>
+      <div className="dashboard-content">
+        <div className="welcome-section">
+          <h2>Hospital Canteen Dashboard</h2>
+          <p>Manage orders, inventory and operations</p>
+        </div>
+
+        <QuickActions />
+
+        <SummaryCards stats={stats} />
+
+        <Charts />
+
+        <div className="grid-2">
+          <AlertsPanel />
+          <RecentOrdersTable />
+        </div>
       </div>
-
-      <QuickActions />
-
-      {/* ✅ PASS DATA HERE */}
-      <SummaryCards stats={stats} />
-      <Charts />
-
-      <AlertsPanel />
-
-      <RecentOrdersTable />
     </div>
   );
 }
